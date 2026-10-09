@@ -4,6 +4,8 @@ add_executable(unit_tests
     unit/test_parse.cpp
     unit/test_headers_compile.cpp
     unit/test_attribute.cpp
+    unit/test_datatype.cpp 
+    unit/test_tensor_shape.cpp
 )
 
 # link the onnxcc_lib library to the unit_tests executable.

@@ -1,6 +1,6 @@
 #include "datatype.h"
 
-std::string_view dtype_name(onnxcc::DataType dt){
+std::string_view onnxcc::dtype_name(onnxcc::DataType dt){
     switch(dt) {
         case onnxcc::DataType::FLOAT32: return "FLOAT32";
         case onnxcc::DataType::INT32: return "INT32";
