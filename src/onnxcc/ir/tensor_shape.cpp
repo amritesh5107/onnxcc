@@ -1,6 +1,6 @@
 #include "tensor_shape.h"
 #include "datatype.h"
-#include<limits>
+#include <limits>
 
 std::size_t onnxcc::TensorShape::num_elements() const
 {
@@ -10,14 +10,14 @@ std::size_t onnxcc::TensorShape::num_elements() const
     }
 
     // Result is initialized to 1. If dims is empty, the loop never runs and the result would be 1 which is correct for scalar
-    std::size_t result = 1; 
+    std::size_t result = 1;
     // Numeric limits sets max size according to the system.
     std::size_t maxi = std::numeric_limits<std::size_t>::max();
 
     for (const std::int64_t &dim : dims)
     {
-        // We have to check everytime if result*dim> max range and that dim is not 0.
-        if ( dim!=0 && (maxi / dim) < result)
+        // We have to check everytime if result*dim > max range and that dim is not 0.
+        if (dim != 0 && (maxi / dim) < result)
         {
             throw std::overflow_error("number of tensor elements exceeds the representable range");
         }
@@ -28,8 +28,8 @@ std::size_t onnxcc::TensorShape::num_elements() const
 
 std::size_t onnxcc::TensorShape::num_bytes(onnxcc::DataType dt) const
 {
-    std::size_t elements=num_elements();
-    std::size_t data_size =dtype_size(dt);
+    std::size_t elements = num_elements();
+    std::size_t data_size = dtype_size(dt);
     if ((std::numeric_limits<std::size_t>::max()) / data_size < elements)
     {
         throw std::overflow_error("number of tensor bytes exceeds the representable range");
