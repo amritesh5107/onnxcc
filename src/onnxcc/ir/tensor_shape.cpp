@@ -28,11 +28,13 @@ std::size_t onnxcc::TensorShape::num_elements() const
 
 std::size_t onnxcc::TensorShape::num_bytes(onnxcc::DataType dt) const
 {
-    if ((std::numeric_limits<std::size_t>::max()) / dtype_size(dt) < num_elements())
+    std::size_t elements=num_elements();
+    std::size_t data_size =dtype_size(dt);
+    if ((std::numeric_limits<std::size_t>::max()) / data_size < elements)
     {
         throw std::overflow_error("number of tensor bytes exceeds the representable range");
     }
-    return dtype_size(dt) * num_elements();
+    return data_size * elements;
 }
 
 std::string onnxcc::TensorShape::to_string() const
