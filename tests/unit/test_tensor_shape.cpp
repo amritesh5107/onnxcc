@@ -91,6 +91,7 @@ TEST(TensorShapeTest, ShapesCompareLexicographically)
 
     EXPECT_TRUE((a <=> b) < 0);
     EXPECT_TRUE((b <=> c) < 0);
+    EXPECT_FALSE((a <=> c) > 0);
 
     EXPECT_TRUE(a < b);
     EXPECT_TRUE(c > b);
